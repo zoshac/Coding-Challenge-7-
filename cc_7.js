@@ -44,29 +44,22 @@ calculateLoyaltyDiscount(200, 2); // Expected output: "Discounted Price: $190.00
 
 // Task 4 Product Shipping Cost Calculation 
 const calculateShippingCost = (weight, location, expidited = false) => {
-    let baseCost = 0; 
-    let costPerPound = 0;
+    let shippingCost;
 
-    // Base costs per pound by location 
     if (location === "USA") {
-        baseCost = 5;
-        costPerPound = 0.5;
+        shippingCost = 5 + (weight * 0.5); // $5 per 0.5lb
     } else if (location === "Canada") {
-        baseCost = 10;
-        costPerPound = 0.7;
+        shippingCost = 10 + (weight * 0.7); // $10 per 0.7lb
     } else {
         console.log("Invalid Location!");
         return;
     }
-    // Initial cost Calculation based on weight on location 
-    let shippingCost = baseCost + (weight * costPerPound);
-
-    // Addition of expidited shipping fee if applicable 
     if (expidited) {
-        shippingCost +=10;
+        shippingCost += 10; // $10 extra fpr expidited shipping 
     }
     console.log(`Shipping Cost: $${shippingCost.toFixed(2)}`);
-};
+}; 
 
+// Test Cases 
 calculateShippingCost(10, "USA", true); // Expected output: "Shipping Cost: $20.00"
 calculateShippingCost(5, "Canada", false); // Expected output: "Shipping Cost: $13.50"
