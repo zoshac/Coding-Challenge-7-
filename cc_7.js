@@ -40,3 +40,33 @@ const calculateLoyaltyDiscount = (amount, years) => {
 // Test Data 
 calculateLoyaltyDiscount(100, 6); // Expected output: "Discounted Price: $85.00"
 calculateLoyaltyDiscount(200, 2); // Expected output: "Discounted Price: $190.00"
+
+
+// Task 4 Product Shipping Cost Calculation 
+const calculateShippingCost = (weight, location, expidited = false) => {
+    let baseCost = 0; 
+    let costPerPound = 0;
+
+    // Base costs per pound by location 
+    if (location === "USA") {
+        baseCost = 5;
+        costPerPound = 0.5;
+    } else if (location === "Canada") {
+        baseCost = 10;
+        costPerPound = 0.7;
+    } else {
+        console.log("Invalid Location!");
+        return;
+    }
+    // Initial cost Calculation based on weight on location 
+    let shippingCost = baseCost + (weight * costPerPound);
+
+    // Addition of expidited shipping fee if applicable 
+    if (expidited) {
+        shippingCost +=10;
+    }
+    console.log(`Shipping Cost: $${shippingCost.toFixed(2)}`);
+};
+
+calculateShippingCost(10, "USA", true); // Expected output: "Shipping Cost: $20.00"
+calculateShippingCost(5, "Canada", false); // Expected output: "Shipping Cost: $13.50"
